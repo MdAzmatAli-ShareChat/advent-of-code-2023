@@ -8,34 +8,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-//only 12 red cubes, 13 green cubes, and 14 blue cubes?
 
-
-class Game {
-    public long green;
-    public long blue;
-    public long red;
-
-    // getters and setters (or you can make fields public if you prefer)
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "green=" + green +
-                ", blue=" + blue +
-                ", red=" + red +
-                '}';
-    }
-}
-
-public class Q2 {
-    private int MAX_RED = 12;
-    private int MAX_GREEN = 13;
-    private int MAX_BLUE = 14;
+public class Q2P2 {
+    private final int MAX_RED = 12;
+    private final int MAX_GREEN = 13;
+    private final int MAX_BLUE = 14;
 
     public static void main(String[] args) {
         String filePath = "/Users/mdazmat/advent-of-code/src/main/java/org/example/Q2/input.txt";
-
         try {
             // Read all lines from the file into a List
             Path path = Paths.get(filePath);
@@ -54,26 +34,25 @@ public class Q2 {
             String line = lines.get(i);
             List<Game> games = parseInput(line);
             long red = 0, blue = 0, green = 0;
-            boolean possible = true;
             for (Game game : games) {
-                red = Math.max(red, game.red);
-                blue = Math.max(blue, game.blue);
-                green = Math.max(green, game.green);
+                red = Math.max(red, game.getRed());
+                blue = Math.max(blue, game.getBlue());
+                green = Math.max(green, game.getGreen());
             }
-            ans+= (red * blue * green);
+            ans += (red * blue * green);
 
         }
         return ans;
     }
 
     private static List<Game> parseInput(String input) {
-        String[] gameStrings = input.split(":");
-        String[] a = gameStrings[1].split(";");
+        String[] split1 = input.split(":");
+        String[] split2 = split1[1].split(";");
 
         // Use a List to store the parsed Game objects
         List<Game> games = new ArrayList<>();
 
-        for (String gameString : a) {
+        for (String gameString : split2) {
             Game game = parseGame(gameString);
             games.add(game);
         }
@@ -82,25 +61,25 @@ public class Q2 {
     }
 
     private static Game parseGame(String gameString) {
+
         String[] stats = gameString.trim().split("\\s*,\\s*");
 
         Game game = new Game();
         for (String stat : stats) {
             String[] parts = stat.split("\\s+");
             int value = Integer.parseInt(parts[0]);
-            String color = parts[1].toLowerCase(); // convert color to lowercase for case-insensitive matching
+            String color = parts[1].toLowerCase();
 
             switch (color) {
                 case "green":
-                    game.green = (value);
+                    game.setGreen(value);
                     break;
                 case "blue":
-                    game.blue = (value);
+                    game.setBlue(value);
                     break;
                 case "red":
-                    game.red = (value);
+                    game.setRed(value);
                     break;
-                // handle other colors if needed
             }
         }
 
