@@ -15,7 +15,7 @@ public class Q11P1 {
 
 
     public static void main(String[] args) {
-        String filePath = "/Users/mdazmat/advent-of-code/src/main/java/com/aoc2023/Q11/input.txt";
+        String filePath = "/Users/mdazmat/ShareChat/advent-of-code-2023/src/main/java/com/aoc2023/Q11/input.txt";
         try {
             // Read all lines from the file into a List
             Path path = Paths.get(filePath);
