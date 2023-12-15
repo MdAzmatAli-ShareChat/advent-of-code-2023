@@ -14,6 +14,14 @@ public class Pair<Ta,Tb> {
         return first;
     }
 
+    public void setFirst(Ta first) {
+        this.first = first;
+    }
+
+    public void setSecond(Tb second) {
+        this.second = second;
+    }
+
     public Tb getSecond() {
         return second;
     }
